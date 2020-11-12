@@ -7,13 +7,14 @@ import os
 def close():
     subprocess.getoutput("pulseaudio --start")
     os.system("tput reset")
-    os.system("espeak-ng 'Thank you'")
-    print("Thank you for using my services!!")
+    os.system("figlet 'Thank You'")
+    os.system("espeak-ng 'Thank you for using my services'")
     exit()
 
 def text_menu():
     subprocess.getoutput("pulseaudio --start")
     os.system("tput setaf 2")
+    os.system("figlet 'Helper Program'")
     greet='Hello I am Pluto,your technical helper'
     os.system("espeak-ng 'Hello I am Pluto your technical assistant'")
     print(greet)
@@ -36,7 +37,7 @@ def text_menu():
 def multi_cloud():
     while(True):
         subprocess.getoutput("pulseaudio --start")
-        print("\t\t\t\t\tMULTI CLOUD SERVICES")
+        os.system("figlet 'Multi-Cloud Services'")
         os.system("espeak-ng 'We are providing Multi Cloud services'")
         print("""
 1. Amazon Web Services(AWS)
@@ -58,14 +59,22 @@ def multi_cloud():
 
 
 def aws():
+    os.system("figlet 'PreRequisites'")
+    os.system("tput setaf 2")
+    print("Enter the Access Key")
+    username=input()
+    print("\nEnter the Secret Key")
+    password=input()
+    os.system("clear")
+
     while(True):
         subprocess.getoutput("pulseaudio --start")
-        print("\t\t\t\t\tAMAZON WEB SERVICES")
+        os.system("figlet '                          AWS'")
         os.system("espeak-ng 'Use amazon web services'")
         print("""
 1. Launch Ec2 instance
-2. Create a S3 bucket
-3. Launch a database server(RDS)
+2. List all the instances
+3. Stop an instance
 4. Create VPC network
 5. Go back
 6. Exit
@@ -74,15 +83,33 @@ def aws():
         os.system("tput setaf 4")
         ch=int(input())
         os.system("clear")
+
         if(ch==1):
-            os.system("espeak-ng 'Instance Launched'")
-            print("Instance Launched!!!")
+            os.system("figlet Details\n")
+            print("\n\nEnter the details!!\n")
+            os.system("espeak-ng 'Enter the details'")
+            print("Instance type:")
+            os.system("espeak-ng 'Enter the instance type'")
+            ins_type=input()
+            print("\nImage name:")
+            os.system("espeak-ng 'Enter the image name'")
+            img_name=input()
+            print("\nOS name")
+            os.system("espeak-ng 'Enter the OS name'")
+            os_name=input()
+            print("\nInstance Launched!!!\n")
+            os.system("espeak-ng 'Instance launched please check your AWS account'")
+            os.system("clear")
         elif(ch==2):
-            os.system("espeak-ng 'S3 bucket created'")
-            print("S3 bucker created!!")
+            os.system("aws ec2 describe-instances")
+            print("\n\nPress 1 to go back")
+            e=input()
+            if(e==1):
+                multi_cloud()
         elif(ch==3):
+            os.system("figlet Details")
             os.system("espeak-ng 'database server launched'")
-            print("Database server launched!!")
+            
         elif(ch==4):
             os.system("espeak-ng 'VPC created'")
             print("VPC created")
@@ -90,12 +117,13 @@ def aws():
             multi_cloud()
         elif(ch==6):
             close()
+            break
 
 
 def gcp():
     while(True):
         subprocess.getoutput("pulseaudio --start")
-        print("\t\t\t\t\tGOOGLE CLOUD PLATFORM")
+        os.system("figlet '                          GCP'")
         os.system("espeak-ng 'Use Google Cloud Platform'")
         print("""
 1. Launch Ec2 instance
@@ -121,9 +149,10 @@ def gcp():
         elif(ch==6):
             close()
 
+os.system("clear")
 os.system("tput setaf 4")
 os.system("tput bold")
-print("Welcome")
+os.system("figlet 'Welcome !!'")
 print("Please enter the choice for communication")
 print("""
 1. Text
