@@ -6,7 +6,7 @@ import pyfiglet
 
 #launch os function
 def launchOs():
-	image = input("\n\t\tType the image name with version(like, unbuntu:14.04): ")
+	image = input("\n\t\tType the image name with version (like, unbuntu:14.04): ")
 	#set name for os
 	osname =input("\t\tSet your os name: ")
 	#Create new Operating System 
