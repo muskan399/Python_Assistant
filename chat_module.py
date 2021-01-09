@@ -1,13 +1,11 @@
-import subprocess as sp
-import pyttsx3
-import os
+import socket
 import pyfiglet
-from docker_module import docker
-from hadoop_module import hadoop
-from cloud_module import multi_cloud
-from chat_module import chat
-		
-			
+import threading
+import os
+import subprocess as sp
+from colorama import Fore,Style
+os.system("clear")
+
 def text_menu():
     os.system("clear")
     sp.getoutput("pulseaudio --start")
@@ -44,29 +42,37 @@ def text_menu():
     
 
 
+def chat():
+	os.system("tput reset")        
+	print(pyfiglet.figlet_format("Chat App"))
+	print("Welcome to app\n")
+	afm=socket.AF_INET
+	protocol=socket.SOCK_DGRAM
+	ip="192.168.29.203"
+	port_number=1234
+	s=socket.socket(afm,protocol)
+	s.bind((ip,port_number))
+	def recv():
+        	
+        	while True:
+        		x=s.recvfrom(1024)
+        		ip=x[1][0]
+        		msg=x[0].decode()
+        		print(Fore.BLUE)
+        		print((msg+" from "+ip).rjust(50,'-'))
+        		print(Style.RESET_ALL)
 
-os.system("clear")
-os.system("tput setaf 4")
-sp.getoutput("dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y")
-sp.getoutput("yum install figlet -y")
-os.system("tput bold")
-os.system("figlet 'Welcome !!'")
-print("Please enter the choice for communication")
-print("""
-1. Text
-2. Voice
-      """)
-ch=int(input())
-os.system("clear")
-sp.getoutput("pulseaudio --start")
-if(ch==1):
-    text_menu();
-else:
-    r=sr.Recognizer()
-    print("Please Speak!!!!!")
-    with sr.Microphone() as source:
-        a=sp.getoutput("clear")
-    print(a)
-    audio=r.listen(source)
-    ins=r.recognize_google(audio)
-    print(ins)
+	def send():
+		while True:
+			x=input()
+			if x=="exit":
+				
+				text_menu()
+				break
+			else:
+        			s.sendto(x.encode(),('192.168.29.178',2224))
+
+	x1=threading.Thread(target=recv)
+	x2=threading.Thread(target=send)
+	x1.start()
+	x2.start()
