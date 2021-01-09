@@ -1,43 +1,9 @@
 import os
 import subprocess as sp
-from hadoop_module import hadoop
-from docker_module import docker
-from greeting_module import close
-from chat_module import chat
 
-def text_menu():
-    os.system("clear")
-    sp.getoutput("pulseaudio --start")
-    os.system("tput setaf 2")
-    os.system("figlet 'Helper Program'")
-    greet='Hello I am Pluto,your technical helper'
-    os.system("espeak-ng 'Hello I am Pluto your technical assistant'")
-    print(greet)
-    print("-------------------------------------------Here is the menu-------------------------------------\nEnter the option number")                          
-    os.system("tput setaf 3")
-    print("""
-1. Cloud Services
-2. Docker Services
-3. Hadoop Services
-4. Chat Service
-5. Exit
-    """)
-    os.system("tput setaf 6")
-    option=int(input())
-    os.system("clear")
-    if option==1:
-        multi_cloud()
-	
-    elif option==2:
-        docker()
-               
-    elif option==3:
-        hadoop()
-    elif option==4:
-        chat()
-            
-    elif option==5:
-        close()
+from greeting_module import close
+
+
     
 
 
@@ -62,7 +28,7 @@ def multi_cloud():
     elif(cloud_choice==2):
         gcp()
     elif(cloud_choice==3):
-        text_menu()
+        return
     elif(cloud_choice==4):
         close()
     os.system("clear")

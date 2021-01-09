@@ -2,43 +2,7 @@ import os
 import subprocess as sp
 import pyfiglet
 from greeting_module import close
-from chat_module import chat
 
-#launch os function
-def text_menu():
-    os.system("clear")
-    sp.getoutput("pulseaudio --start")
-    os.system("tput setaf 2")
-    os.system("figlet 'Helper Program'")
-    greet='Hello I am Pluto,your technical helper'
-    os.system("espeak-ng 'Hello I am Pluto your technical assistant'")
-    print(greet)
-    print("-------------------------------------------Here is the menu-------------------------------------\nEnter the option number")                          
-    os.system("tput setaf 3")
-    print("""
-1. Cloud Services
-2. Docker Services
-3. Hadoop Services
-4. Chat Service
-5. Exit
-    """)
-    os.system("tput setaf 6")
-    option=int(input())
-    os.system("clear")
-    if option==1:
-        multi_cloud()
-	
-    elif option==2:
-        docker()
-               
-    elif option==3:
-        hadoop()
-    elif option==4:
-        chat()
-            
-    elif option==5:
-        close()
-    
 
 
 def launchOs():
@@ -163,7 +127,7 @@ def docker():
 		if output[0] == 0:
 			success("All containers removed successfully")
 	elif option == '13':
-		text_menu()
+		return
 	elif option == '14':
 		close()
 	os.system("clear")
